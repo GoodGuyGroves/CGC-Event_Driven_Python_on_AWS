@@ -8,6 +8,8 @@ black = "*"
 pylint = {git = "https://github.com/PyCQA/pylint.git"}
 
 [packages]
+pandas = "*"
+numpy = "*"
 
 [requires]
 python_version = "3.8"
