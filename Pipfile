@@ -10,6 +10,11 @@ pylint = {git = "https://github.com/PyCQA/pylint.git"}
 [packages]
 pandas = "*"
 numpy = "*"
+boto3 = "*"
+dynamodb-json = "*"
+matplotlib = "*"
+seaborn = "*"
+mpld3 = "*"
 
 [requires]
 python_version = "3.8"
