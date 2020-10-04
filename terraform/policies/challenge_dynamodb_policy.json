@@ -1,0 +1,90 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "iam:ChangePassword"
+            ],
+            "Resource": [
+                "arn:aws:iam::*:user/${aws:username}"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "iam:GetAccountPasswordPolicy"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "Redash0",
+            "Effect": "Allow",
+            "Action": [
+                "dynamodb:DescribeGlobalTableSettings",
+                "dynamodb:DescribeGlobalTable",
+                "dynamodb:GetShardIterator",
+                "dynamodb:DescribeContributorInsights",
+                "dynamodb:Scan",
+                "dynamodb:Query",
+                "dynamodb:DescribeStream",
+                "dynamodb:DescribeBackup",
+                "dynamodb:GetRecords"
+            ],
+            "Resource": [
+                "arn:aws:dynamodb:*:639808537303:table/*/backup/*",
+                "arn:aws:dynamodb:*:639808537303:table/*/index/*",
+                "arn:aws:dynamodb::639808537303:global-table/*",
+                "arn:aws:dynamodb:*:639808537303:table/*/stream/*"
+            ],
+            "Condition": {
+                "IpAddress": {
+                    "aws:SourceIp": "52.71.84.157"
+                }
+            }
+        },
+        {
+            "Sid": "Redash1",
+            "Effect": "Allow",
+            "Action": [
+                "dynamodb:BatchGetItem",
+                "dynamodb:ConditionCheckItem",
+                "dynamodb:DescribeTable",
+                "dynamodb:GetItem",
+                "dynamodb:DescribeContributorInsights",
+                "dynamodb:DescribeContinuousBackups",
+                "dynamodb:Scan",
+                "dynamodb:ListTagsOfResource",
+                "dynamodb:Query",
+                "dynamodb:DescribeTimeToLive",
+                "dynamodb:DescribeTableReplicaAutoScaling"
+            ],
+            "Resource": "arn:aws:dynamodb:*:639808537303:table/*",
+            "Condition": {
+                "IpAddress": {
+                    "aws:SourceIp": "52.71.84.157"
+                }
+            }
+        },
+        {
+            "Sid": "Redash2",
+            "Effect": "Allow",
+            "Action": [
+                "dynamodb:ListContributorInsights",
+                "dynamodb:DescribeReservedCapacityOfferings",
+                "dynamodb:ListGlobalTables",
+                "dynamodb:ListTables",
+                "dynamodb:DescribeReservedCapacity",
+                "dynamodb:ListBackups",
+                "dynamodb:DescribeLimits",
+                "dynamodb:ListStreams"
+            ],
+            "Resource": "*",
+            "Condition": {
+                "IpAddress": {
+                    "aws:SourceIp": "52.71.84.157"
+                }
+            }
+        }
+    ]
+}

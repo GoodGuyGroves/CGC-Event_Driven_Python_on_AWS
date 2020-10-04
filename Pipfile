@@ -12,9 +12,8 @@ pandas = "*"
 numpy = "*"
 boto3 = "*"
 dynamodb-json = "*"
-matplotlib = "*"
-seaborn = "*"
 mpld3 = "*"
+black = "*"
 
 [requires]
 python_version = "3.8"

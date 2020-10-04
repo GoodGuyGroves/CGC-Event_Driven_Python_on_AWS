@@ -1,0 +1,48 @@
+service: CGC-python-etl
+
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  runtime: python3.8
+  profile: serverless-admin
+  region: af-south-1
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+      - dynamodb:Query
+      - dynamodb:Scan
+      - dynamodb:GetItem
+      - dynamodb:PutItem
+      - dynamodb:UpdateItem
+      - dynamodb:DeleteItem
+      Resource: ${ssm:/projects/cgc-etl/dynamodb/table_arn}
+
+functions:
+  main:
+    handler: app.main
+
+# you can add CloudFormation resource templates here
+resources:
+#  Resources:
+#    NewResource:
+#      Type: AWS::S3::Bucket
+#      Properties:
+#        BucketName: my-new-bucket
+# HOW TO OUTPUT LAMBDA ARN TO SSM?!
+ Outputs:
+    MainLambdaArn:
+      Description: "Lambda ARN"
+      Value: !GetAtt main.Arn
+
+plugins:
+  - serverless-python-requirements
+
+package:
+  exclude:
+    - node_modules/**
+    - terraform/**
+
+custom:
+  pythonRequirements:
+    dockerizePip: non-linux
