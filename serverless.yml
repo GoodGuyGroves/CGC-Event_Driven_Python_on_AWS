@@ -17,23 +17,23 @@ provider:
       - dynamodb:UpdateItem
       - dynamodb:DeleteItem
       Resource: ${ssm:/projects/cgc-etl/dynamodb/table_arn}
+  stage: dev
 
 functions:
   main:
     handler: app.main
+  alert:
+    handler: dynamodb_sns.alert
 
-# you can add CloudFormation resource templates here
 resources:
-#  Resources:
-#    NewResource:
-#      Type: AWS::S3::Bucket
-#      Properties:
-#        BucketName: my-new-bucket
-# HOW TO OUTPUT LAMBDA ARN TO SSM?!
- Outputs:
-    MainLambdaArn:
-      Description: "Lambda ARN"
-      Value: !GetAtt main.Arn
+  Resources:
+    MainArnParameter:
+      Type: AWS::SSM::Parameter
+      Properties:
+        Name: /projects/cgc-etl/lambda/main_arn
+        Type: String
+        Value: !GetAtt [ MainLambdaFunction, Arn ]
+        Description: The ARN of my main Lambda
 
 plugins:
   - serverless-python-requirements

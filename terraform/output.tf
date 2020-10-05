@@ -2,8 +2,8 @@
 output "dynamodb" {
   description = "DynamoDB table arn, id and stream arn"
   value = {
-    table_arn = aws_dynamodb_table.covid.arn
-    table_id = aws_dynamodb_table.covid.id
+    table_arn  = aws_dynamodb_table.covid.arn
+    table_id   = aws_dynamodb_table.covid.id
     stream_arn = aws_dynamodb_table.covid.stream_arn
   }
 }

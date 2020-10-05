@@ -1,7 +1,7 @@
 # [#CloudGuruChallenge](https://acloudguru.com/blog/news/introducing-the-cloudguruchallenge)
 ## [Event-Driven Python on AWS](https://acloudguru.com/blog/engineering/cloudguruchallenge-python-aws-etl)
 
-- [ ] ETL Job - Create a job that runs once a day to perform some task
+- [x] ETL Job - Create a job that runs once a day to perform some task
 - [x] Extraction - Load the data from [this](https://github.com/nytimes/covid-19-data/blob/master/us.csv?opt_id=oeu1598130766489r0.9183835738508552) CSV into an object in memory
 - [x] Transformation - Perform data manipulations
     - Cleaning
@@ -14,7 +14,7 @@
     - Initial load versus update
     - Notify if the data is malformed
 - [ ] Tests - Unit test the code
-- [ ] IaC - Use IaC to bring up infrastructure
+- [x] IaC - Use IaC to bring up infrastructure
 - [x] Source Control - Store code in Github
 - [x] Dashboard - Report the data using some visualisation/BI tool
 - [ ] Blog Post - Post about the experience and challenges

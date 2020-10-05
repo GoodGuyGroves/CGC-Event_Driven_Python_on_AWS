@@ -3,6 +3,7 @@ import logging
 from etl import ETLHandler
 import utils
 
+
 def main(event, context):
     """Lambda entry point"""
 

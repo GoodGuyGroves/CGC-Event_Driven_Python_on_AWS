@@ -17,10 +17,7 @@ class ETLHandler:
     @staticmethod
     def db_connect():
         """Connects to the DynamoDB Table"""
-        dynamodb = boto3.resource(
-            "dynamodb",
-            region_name="af-south-1"
-        )
+        dynamodb = boto3.resource("dynamodb", region_name="af-south-1")
         return dynamodb.Table("covid-stats")
 
     def db_store(self, df: pd.DataFrame):
