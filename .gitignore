@@ -3,6 +3,9 @@ node_modules/
 .terraform/
 terraform.tfvars
 
+# My locally built python deps that shouldn't go to git
+layers/*/python/
+
 # VSCode
 .vscode
 

@@ -22,6 +22,9 @@ provider:
 functions:
   main:
     handler: app.main
+    layers:
+      - arn:aws:lambda:${self:provider.region}:392341123054:layer:AWSLambda-Python38-SciPy1x:26
+      - {Ref: PandasLambdaLayer}
   alert:
     handler: dynamodb_sns.alert
 
@@ -35,14 +38,25 @@ resources:
         Value: !GetAtt [ MainLambdaFunction, Arn ]
         Description: The ARN of my main Lambda
 
-plugins:
-  - serverless-python-requirements
+# plugins:
+#   - serverless-python-requirements
 
 package:
   exclude:
     - node_modules/**
     - terraform/**
+  individually: true
 
-custom:
-  pythonRequirements:
-    dockerizePip: non-linux
+# custom:
+#   pythonRequirements:
+#     dockerizePip: non-linux
+
+
+# AWS Lambda Layers
+layers:
+  Pandas:
+    path: layers/pandas
+    name: ${self:service}-Python38-Pandas1-1-2
+    description: Pandas 1.1.2 with Python 3.8
+    compatibleRuntimes:
+      - python3.8
