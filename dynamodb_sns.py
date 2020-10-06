@@ -1,6 +1,7 @@
 """Emails data about DynamoDB updated roles"""
 import logging
 
+
 def alert(event, context):
     """Sends the alert"""
     logger = logging.getLogger()
