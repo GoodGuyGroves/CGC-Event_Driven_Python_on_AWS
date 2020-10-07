@@ -2,6 +2,7 @@ node_modules/
 .serverless/
 .terraform/
 terraform.tfvars
+*.out
 
 # My locally built python deps that shouldn't go to git
 layers/*/python/

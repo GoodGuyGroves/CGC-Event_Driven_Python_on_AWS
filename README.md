@@ -9,7 +9,7 @@
     - Filtering (to remove non-US stats)
 - [x] Code cleanup - Move data manipulation into a python module
 - [x] Load - Load transformed data into a DB
-- [ ] Notification - Notify using SNS that the ETL job is complete
+- [x] Notification - Notify using SNS that the ETL job is complete
 - [ ] Error handling - Handle the following:
     - Initial load versus update
     - Notify if the data is malformed

@@ -7,6 +7,9 @@ provider:
   runtime: python3.8
   profile: serverless-admin
   region: af-south-1
+  stage: dev
+  environment:
+    SNS_TOPIC_ARN: ${ssm:/projects/cgc-etl/sns/dynamodb_alert_topic_arn}
   iamRoleStatements:
     - Effect: "Allow"
       Action:
@@ -17,7 +20,17 @@ provider:
       - dynamodb:UpdateItem
       - dynamodb:DeleteItem
       Resource: ${ssm:/projects/cgc-etl/dynamodb/table_arn}
-  stage: dev
+    - Effect: "Allow"
+      Action:
+      - dynamodb:GetRecords
+      - dynamodb:GetShardIterator
+      - dynamodb:DescribeStream
+      - dynamodb:ListStreams
+      Resource: ${ssm:/projects/cgc-etl/dynamodb/stream_arn}
+    - Effect: "Allow"
+      Action:
+      - SNS:Publish
+      Resource: ${ssm:/projects/cgc-etl/sns/dynamodb_alert_topic_arn}
 
 functions:
   main:
@@ -38,19 +51,11 @@ resources:
         Value: !GetAtt [ MainLambdaFunction, Arn ]
         Description: The ARN of my main Lambda
 
-# plugins:
-#   - serverless-python-requirements
-
 package:
   exclude:
     - node_modules/**
     - terraform/**
   individually: true
-
-# custom:
-#   pythonRequirements:
-#     dockerizePip: non-linux
-
 
 # AWS Lambda Layers
 layers:
