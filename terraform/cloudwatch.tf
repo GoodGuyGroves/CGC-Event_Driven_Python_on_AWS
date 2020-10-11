@@ -7,6 +7,6 @@ resource "aws_cloudwatch_event_rule" "daily_8pm" {
 
 resource "aws_cloudwatch_event_target" "check_main_etl_daily_8pm" {
   rule      = aws_cloudwatch_event_rule.daily_8pm.name
-  target_id = "lambda"
-  arn       = data.aws_ssm_parameter.main_arn.value
+  target_id = "etl-main"
+  arn       = data.aws_lambda_function.etl_main.arn
 }

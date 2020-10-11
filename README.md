@@ -10,14 +10,12 @@
 - [x] Code cleanup - Move data manipulation into a python module
 - [x] Load - Load transformed data into a DB
 - [x] Notification - Notify using SNS that the ETL job is complete
-- [ ] Error handling - Handle the following:
-    - Initial load versus update
-    - Notify if the data is malformed
-- [ ] Tests - Unit test the code
+- [x] Error handling
+- [x] Tests - Unit test the code
 - [x] IaC - Use IaC to bring up infrastructure
 - [x] Source Control - Store code in Github
 - [x] Dashboard - Report the data using some visualisation/BI tool
-- [ ] Blog Post - Post about the experience and challenges
+- [x] Blog Post - Post about the experience and challenges
 
 ## Terraform
 
