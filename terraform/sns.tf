@@ -1,7 +1,7 @@
 resource "aws_sns_topic" "dynamodb_alert" {
-  name = "dynamodb-activity"
+  name         = "dynamodb-activity"
   display_name = "DynamoDB Activity"
   tags = {
-      "creator" = "terraform"
+    "creator" = "terraform"
   }
 }

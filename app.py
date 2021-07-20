@@ -37,8 +37,11 @@ def main(event, context):
         etl.db_store(new_data)
     except Exception as e:
         # Doing a general catch because I want all errors to be pushed to SNS
-        sns.publish(TopicArn=sns_topic_arn, Message=(
-            f"There was an error in function {context.function_name}"
-            f"Please see log {context.log_group_name} for more info."
-            f"Error: {e}"
-        ))
+        sns.publish(
+            TopicArn=sns_topic_arn,
+            Message=(
+                f"There was an error in function {context.function_name}"
+                f"Please see log {context.log_group_name} for more info."
+                f"Error: {e}"
+            ),
+        )

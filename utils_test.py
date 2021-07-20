@@ -10,21 +10,25 @@ class TestUtils(unittest.TestCase):
 
     def test_convert_date(self):
         """Tests converting date"""
-        df = pd.DataFrame({"date":'2020-01-01',"cases": [1],"deaths": [2], "recovered": [3]})
+        df = pd.DataFrame(
+            {"date": "2020-01-01", "cases": [1], "deaths": [2], "recovered": [3]}
+        )
         df = utils.convert_date(df, date_column="date")
-        self.assertEqual(df['date'].dtypes, "datetime64[ns]")
+        self.assertEqual(df["date"].dtypes, "datetime64[ns]")
 
     def test_filter_criteria(self):
         """Tests filtering based on a criteria"""
         df = pd.DataFrame(
             {
-                "date": ["2020-01-01","2020-01-02", "2020-01-03"],
-                "cases": [1,2,3],
-                "deaths": [2,4,6],
-                "recovered": [3,6,9]
+                "date": ["2020-01-01", "2020-01-02", "2020-01-03"],
+                "cases": [1, 2, 3],
+                "deaths": [2, 4, 6],
+                "recovered": [3, 6, 9],
             }
         )
-        compare_df = pd.DataFrame({"date":'2020-01-01',"cases": [1],"deaths": [2], "recovered": [3]})
+        compare_df = pd.DataFrame(
+            {"date": "2020-01-01", "cases": [1], "deaths": [2], "recovered": [3]}
+        )
         df = utils.filter_criteria(df, "date", "2020-01-01")
         assert_frame_equal(df, compare_df)
 
@@ -48,7 +52,9 @@ class TestUtils(unittest.TestCase):
             }
         )
         df = utils.find_new(old_df, new_df)
-        diff_df = pd.DataFrame({"date":'2020-01-04',"cases": [6],"deaths": [8], "recovered": [12]})
+        diff_df = pd.DataFrame(
+            {"date": "2020-01-04", "cases": [6], "deaths": [8], "recovered": [12]}
+        )
         assert_frame_equal(df.reset_index(drop=True), diff_df.reset_index(drop=True))
 
 
